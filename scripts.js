@@ -55,7 +55,8 @@ function drawWheel() {
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
         ctx.font = '14px Arial';
-        ctx.fillText(names[i], 150, 0);
+        ctx.rotate(Math.PI / 2);
+        ctx.fillText(names[i], 0, -230);
         ctx.restore();
     }
 }
