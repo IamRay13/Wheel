@@ -52,9 +52,10 @@ function drawWheel() {
 
         ctx.translate(250 + Math.cos(angle + arcSize / 2) * 200, 250 + Math.sin(angle + arcSize / 2) * 200);
         ctx.rotate(angle + arcSize / 2 + Math.PI / 2);
-        ctx.font = '16px Arial';
+        ctx.font = '14px Arial';
         ctx.fillStyle = '#000';
-        ctx.fillText(names[i], -ctx.measureText(names[i]).width / 2, 0);
+        ctx.textAlign = 'center';
+        ctx.fillText(names[i], 0, 0);
         ctx.restore();
     }
 }
