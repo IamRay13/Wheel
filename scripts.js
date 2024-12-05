@@ -61,8 +61,8 @@ function drawWheel() {
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
         ctx.font = '14px Arial';
-        ctx.rotate(-1 * angle - arcSize / 2); // Correct rotation for text
-        ctx.fillText(names[i], 0, -250); // Adjust the radius if necessary
+        ctx.rotate(-1 * angle - arcSize / 2); // Correct rotation for text slant
+        ctx.fillText(names[i], 0, -260); // Adjust the radius if necessary
         ctx.restore();
     }
 }
