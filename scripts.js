@@ -25,7 +25,6 @@ const names = [
     "Juliana Faye Gutierrez Catamco"
 ];
 
-// Diverse set of colors
 const colors = [
     '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
     '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
@@ -44,6 +43,9 @@ const ctx = wheel.getContext('2d');
 const segments = names.length;
 const arcSize = 2 * Math.PI / segments;
 
+const drumRollAudio = document.getElementById('drum-roll');
+const celebratorySoundAudio = document.getElementById('celebratory-sound');
+
 function drawWheel() {
     for (let i = 0; i < segments; i++) {
         const angle = i * arcSize;
@@ -59,13 +61,14 @@ function drawWheel() {
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
         ctx.font = '14px Arial';
-        ctx.rotate(Math.PI / 2);
-        ctx.fillText(names[i], 0, -280);
+        ctx.rotate(-1 * angle - arcSize / 2); // Correct rotation for text
+        ctx.fillText(names[i], 0, -250); // Adjust the radius if necessary
         ctx.restore();
     }
 }
 
 function spinWheel() {
+    drumRollAudio.play();
     const spinAngle = Math.random() * 10 + 5;
     const spinDuration = Math.random() * 2000 + 2000;
     const winnerIndex = Math.floor(Math.random() * segments);
@@ -91,6 +94,9 @@ function spinWheel() {
         if (progress < 1) {
             requestAnimationFrame(animate);
         } else {
+            drumRollAudio.pause();
+            drumRollAudio.currentTime = 0;
+            celebratorySoundAudio.play();
             document.getElementById('winner-message').innerText = `Congratulations, ${names[winnerIndex]}!`;
         }
     }
