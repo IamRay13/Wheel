@@ -1,29 +1,30 @@
 const names = [
-    "Miricar Ross Amasa Abregana",
-    "Jade Judilla Tan",
-    "Gladys Owatan Miñoza",
-    "Ramon Mangubat Tariao",
+    "Miricar Abregana",
+    "Jade Tan",
+    "Gladys Miñoza",
+    "Ramon Tariao",
     "Harben De Castro",
-    "Mariejo Rondero Anglit Indoy",
-    "Stefano Luis Ibaseta Arriola",
-    "Floravee Rama Tampos",
-    "Kimberly Tajado Silagpo",
-    "Huervo Sanchez Baculi",
-    "Jovelyn Escora Capuno",
-    "Hanefah Mamarinta Ameril",
-    "Liberty Balagtas Fajardo",
-    "Windy Lapon Aniñon",
-    "Jean Ivey Oyao",
-    "Shannen Claire Capuyan Tumulak",
-    "Tim Joverl Espinosa Bahena",
-    "Reyk Javik Jr. Talisay Mendoza",
-    "Ranzel Dulotan Padayao",
-    "Rizza Mae Sampaga Mabuan",
-    "Danica Tampipi Sayson",
-    "Loreto Jr. Omas Iwayan",
-    "Ailene Maribojoc Tequillo",
-    "Juliana Faye Gutierrez Catamco"
+    "Mariejo Indoy",
+    "Stefano Arriola",
+    "Floravee Tampos",
+    "Kimberly Silagpo",
+    "Huervo Baculi",
+    "Jovelyn Capuno",
+    "Hanefah Ameril",
+    "Liberty Fajardo",
+    "Windy Aniñon",
+    "Jean Oyao",
+    "Shannen Tumulak",
+    "Tim Bahena",
+    "Reyk Mendoza",
+    "Ranzel Padayao",
+    "Rizza Mabuan",
+    "Danica Sayson",
+    "Loreto Iwayan",
+    "Ailene Tequillo",
+    "Juliana Catamco"
 ];
+
 
 const colors = [
     '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
@@ -60,11 +61,24 @@ function drawWheel() {
         ctx.rotate(angle + arcSize / 2);
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
-        ctx.font = '14px Arial';
-        ctx.rotate(-1 * angle - arcSize / 2); // Correct rotation for text slant
-        ctx.fillText(names[i], 0, -260); // Adjust the radius if necessary
+        ctx.font = 'bold 12px Arial';
+        drawTextAlongArc(ctx, names[i], 0, -270, angle + arcSize / 2);
         ctx.restore();
     }
+}
+
+function drawTextAlongArc(ctx, str, x, y, angle) {
+    var radius = 250;  // Radius at which text is placed
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(-1 * angle);
+    for (var i = 0; i < str.length; i++) {
+        var charWidth = ctx.measureText(str[i]).width;
+        ctx.rotate(charWidth / (2 * radius));
+        ctx.fillText(str[i], 0, -radius);
+        ctx.rotate(charWidth / (2 * radius));
+    }
+    ctx.restore();
 }
 
 function spinWheel() {
