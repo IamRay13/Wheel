@@ -68,7 +68,7 @@ function drawWheel() {
 
 function spinWheel() {
     drumRollAudio.play();
-    const spinAngle = Math.random() * 10 + 5;
+    const spinAngle = Math.random() * 20 + 10; // Increase the spin angle for faster speed
     const spinDuration = (Math.random() * 5 + 20) * 1000; // Random duration between 20-25 seconds
     const startRotation = Math.random() * 2 * Math.PI; // Random starting point
     const endRotation = startRotation + spinAngle * Math.PI; // Add multiple full spins
