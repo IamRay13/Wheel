@@ -70,17 +70,19 @@ function spinWheel() {
     drumRollAudio.play();
     const spinAngle = Math.random() * 10 + 5;
     const spinDuration = Math.random() * 2000 + 2000;
-    const winnerIndex = Math.floor(Math.random() * segments);
-    const winnerAngle = winnerIndex * arcSize + arcSize / 2;
+    const startRotation = Math.random() * 2 * Math.PI; // Random starting point
+    const endRotation = startRotation + spinAngle * Math.PI; // Add multiple full spins
+    const winnerIndex = Math.floor((endRotation / arcSize) % segments);
+    const winnerAngle = winnerIndex * arcSize;
 
-    let currentRotation = 0;
+    let currentRotation = startRotation;
     const start = Date.now();
 
     function animate() {
         const elapsed = Date.now() - start;
         const progress = Math.min(elapsed / spinDuration, 1);
         const easing = progress * (2 - progress);
-        currentRotation = (spinAngle * easing + winnerAngle) % (2 * Math.PI);
+        currentRotation = (startRotation + (endRotation - startRotation) * easing) % (2 * Math.PI);
 
         ctx.clearRect(0, 0, 600, 600);
         ctx.save();
