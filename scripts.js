@@ -74,6 +74,7 @@ function spinWheel() {
     const endRotation = startRotation + spinAngle * Math.PI; // Add multiple full spins
     let currentRotation = startRotation;
     const start = Date.now();
+    const isPrank = Math.random() < 0.5; // Randomly decide if this spin will have a prank
 
     function animate() {
         const elapsed = Date.now() - start;
@@ -99,41 +100,43 @@ function spinWheel() {
             drumRollAudio.currentTime = 0;
             celebratorySoundAudio.play();
 
-            // Prank: Fake stop and restart the spin
-            setTimeout(() => {
-                drumRollAudio.play();
-                const prankSpinAngle = Math.random() * 10 + 5;
-                const prankSpinDuration = 2000; // 2 seconds for the prank spin
-                const prankStart = Date.now();
-                const prankStartRotation = currentRotation;
-                const prankEndRotation = prankStartRotation + prankSpinAngle * Math.PI;
+            if (isPrank) {
+                // Prank: Fake stop and restart the spin
+                setTimeout(() => {
+                    drumRollAudio.play();
+                    const prankSpinAngle = Math.random() * 10 + 5;
+                    const prankSpinDuration = 2000; // 2 seconds for the prank spin
+                    const prankStart = Date.now();
+                    const prankStartRotation = currentRotation;
+                    const prankEndRotation = prankStartRotation + prankSpinAngle * Math.PI;
 
-                function prankAnimate() {
-                    const prankElapsed = Date.now() - prankStart;
-                    const prankProgress = Math.min(prankElapsed / prankSpinDuration, 1);
-                    const prankEasing = prankProgress * (2 - prankProgress);
+                    function prankAnimate() {
+                        const prankElapsed = Date.now() - prankStart;
+                        const prankProgress = Math.min(prankElapsed / prankSpinDuration, 1);
+                        const prankEasing = prankProgress * (2 - prankProgress);
 
-                    currentRotation = (prankStartRotation + (prankEndRotation - prankStartRotation) * prankEasing) % (2 * Math.PI);
+                        currentRotation = (prankStartRotation + (prankEndRotation - prankStartRotation) * prankEasing) % (2 * Math.PI);
 
-                    ctx.clearRect(0, 0, 600, 600);
-                    ctx.save();
-                    ctx.translate(300, 300);
-                    ctx.rotate(currentRotation);
-                    ctx.translate(-300, -300);
-                    drawWheel();
-                    ctx.restore();
+                        ctx.clearRect(0, 0, 600, 600);
+                        ctx.save();
+                        ctx.translate(300, 300);
+                        ctx.rotate(currentRotation);
+                        ctx.translate(-300, -300);
+                        drawWheel();
+                        ctx.restore();
 
-                    if (prankProgress < 1) {
-                        requestAnimationFrame(prankAnimate);
-                    } else {
-                        drumRollAudio.pause();
-                        drumRollAudio.currentTime = 0;
-                        celebratorySoundAudio.play();
+                        if (prankProgress < 1) {
+                            requestAnimationFrame(prankAnimate);
+                        } else {
+                            drumRollAudio.pause();
+                            drumRollAudio.currentTime = 0;
+                            celebratorySoundAudio.play();
+                        }
                     }
-                }
 
-                prankAnimate();
-            }, 1000); // 1 second delay before the prank spin
+                    prankAnimate();
+                }, 1000); // 1 second delay before the prank spin
+            }
         }
     }
 
