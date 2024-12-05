@@ -72,7 +72,7 @@ function spinWheel() {
     const spinDuration = Math.random() * 2000 + 2000;
     const startRotation = Math.random() * 2 * Math.PI; // Random starting point
     const endRotation = startRotation + spinAngle * Math.PI; // Add multiple full spins
-    const winnerIndex = Math.floor((endRotation / arcSize) % segments);
+    const winnerIndex = Math.floor((segments - (endRotation % (2 * Math.PI)) / arcSize) % segments); // Adjust calculation
     const winnerAngle = winnerIndex * arcSize;
 
     let currentRotation = startRotation;
@@ -98,7 +98,9 @@ function spinWheel() {
             drumRollAudio.pause();
             drumRollAudio.currentTime = 0;
             celebratorySoundAudio.play();
-            document.getElementById('winner-message').innerText = `Congratulations, ${names[winnerIndex]}!`;
+            setTimeout(() => {
+                document.getElementById('winner-message').innerText = `Congratulations, ${names[winnerIndex]}!`;
+            }, 1000); // 1-second delay before showing the winner message
         }
     }
 
