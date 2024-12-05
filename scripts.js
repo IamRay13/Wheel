@@ -97,7 +97,7 @@ function spinWheel() {
             celebratorySoundAudio.play();
 
             // Calculate the index of the winning segment based on the final rotation
-            const winnerIndex = Math.floor((segments - (currentRotation % (2 * Math.PI)) / arcSize) % segments);
+            const winnerIndex = Math.floor(((2 * Math.PI - currentRotation) % (2 * Math.PI)) / arcSize);
 
             setTimeout(() => {
                 document.getElementById('winner-message').innerText = `Congratulations, ${names[winnerIndex]}!`;
