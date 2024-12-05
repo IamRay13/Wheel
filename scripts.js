@@ -25,7 +25,6 @@ const names = [
     "Juliana Catamco"
 ];
 
-
 const colors = [
     '#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', 
     '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
@@ -61,24 +60,10 @@ function drawWheel() {
         ctx.rotate(angle + arcSize / 2);
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000';
-        ctx.font = 'bold 12px Arial';
-        drawTextAlongArc(ctx, names[i], 0, -270, angle + arcSize / 2);
+        ctx.font = 'bold 14px Arial';
+        ctx.fillText(names[i], 150, 10); // Adjust the radius and position if necessary
         ctx.restore();
     }
-}
-
-function drawTextAlongArc(ctx, str, x, y, angle) {
-    var radius = 250;  // Radius at which text is placed
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(-1 * angle);
-    for (var i = 0; i < str.length; i++) {
-        var charWidth = ctx.measureText(str[i]).width;
-        ctx.rotate(charWidth / (2 * radius));
-        ctx.fillText(str[i], 0, -radius);
-        ctx.rotate(charWidth / (2 * radius));
-    }
-    ctx.restore();
 }
 
 function spinWheel() {
