@@ -25,6 +25,16 @@ const names = [
     "Juliana Faye Gutierrez Catamco"
 ];
 
+const colors = [
+    '#FF0000', // Red
+    '#FF7F00', // Orange
+    '#FFFF00', // Yellow
+    '#00FF00', // Green
+    '#0000FF', // Blue
+    '#4B0082', // Indigo
+    '#8B00FF'  // Violet
+];
+
 const wheel = document.getElementById('wheel');
 const ctx = wheel.getContext('2d');
 const segments = names.length;
@@ -36,7 +46,7 @@ function drawWheel() {
         ctx.beginPath();
         ctx.arc(250, 250, 250, angle, angle + arcSize, false);
         ctx.lineTo(250, 250);
-        ctx.fillStyle = i % 2 === 0 ? '#FFDD57' : '#57AFFF';
+        ctx.fillStyle = colors[i % colors.length];
         ctx.fill();
         ctx.save();
 
