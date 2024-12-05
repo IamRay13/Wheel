@@ -78,7 +78,10 @@ function spinWheel() {
     function animate() {
         const elapsed = Date.now() - start;
         const progress = Math.min(elapsed / spinDuration, 1);
-        const easing = progress * (2 - progress);
+
+        // Creating a thrilling effect by modulating the speed
+        const easing = Math.sin(progress * Math.PI * 2) * 0.5 + 0.5;
+
         currentRotation = (startRotation + (endRotation - startRotation) * easing) % (2 * Math.PI);
 
         ctx.clearRect(0, 0, 600, 600);
