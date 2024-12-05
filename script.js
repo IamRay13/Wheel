@@ -1,28 +1,28 @@
 const names = [
-    'Miricar Ross Amasa Abregana',
-    'Jade Judilla Tan',
-    'Gladys Owatan Miñoza',
-    'Ramon Mangubat Tariao',
-    'Harben De Castro',
-    'Mariejo Rondero Anglit Indoy',
-    'Stefano Luis Ibaseta Arriola',
-    'Floravee Rama Tampos',
-    'Kimberly Tajado Silagpo',
-    'Huervo Sanchez Baculi',
-    'Jovelyn Escora Capuno',
-    'Hanefah Mamarinta Ameril',
-    'Liberty Balagtas Fajardo',
-    'Windy Lapon Aniñon',
-    'Jean Ivey Oyao',
-    'Shannen Claire Capuyan Tumulak',
-    'Tim Joverl Espinosa Bahena',
-    'Reyk Javik Jr. Talisay Mendoza',
-    'Ranzel Dulotan Padayao',
-    'Rizza Mae Sampaga Mabuan',
-    'Danica Tampipi Sayson',
-    'Loreto Jr. Omas Iwayan',
-    'Ailene Maribojoc Tequillo',
-    'Juliana Faye Gutierrez Catamco'
+    "Miricar Ross Amasa Abregana",
+    "Jade Judilla Tan",
+    "Gladys Owatan Miñoza",
+    "Ramon Mangubat Tariao",
+    "Harben De Castro",
+    "Mariejo Rondero Anglit Indoy",
+    "Stefano Luis Ibaseta Arriola",
+    "Floravee Rama Tampos",
+    "Kimberly Tajado Silagpo",
+    "Huervo Sanchez Baculi",
+    "Jovelyn Escora Capuno",
+    "Hanefah Mamarinta Ameril",
+    "Liberty Balagtas Fajardo",
+    "Windy Lapon Aniñon",
+    "Jean Ivey Oyao",
+    "Shannen Claire Capuyan Tumulak",
+    "Tim Joverl Espinosa Bahena",
+    "Reyk Javik Jr. Talisay Mendoza",
+    "Ranzel Dulotan Padayao",
+    "Rizza Mae Sampaga Mabuan",
+    "Danica Tampipi Sayson",
+    "Loreto Jr. Omas Iwayan",
+    "Ailene Maribojoc Tequillo",
+    "Juliana Faye Gutierrez Catamco"
 ];
 
 const wheel = document.getElementById('wheel');
@@ -54,7 +54,7 @@ function spinWheel() {
     const spinDuration = Math.random() * 2000 + 2000;
     const winnerIndex = Math.floor(Math.random() * segments);
     const winnerAngle = winnerIndex * arcSize + arcSize / 2;
-    
+
     let currentRotation = 0;
     const start = Date.now();
 
@@ -62,7 +62,7 @@ function spinWheel() {
         const elapsed = Date.now() - start;
         const progress = Math.min(elapsed / spinDuration, 1);
         const easing = progress * (2 - progress);
-        currentRotation = spinAngle * easing + winnerAngle;
+        currentRotation = (spinAngle * easing + winnerAngle) % (2 * Math.PI);
 
         ctx.clearRect(0, 0, 500, 500);
         ctx.save();
