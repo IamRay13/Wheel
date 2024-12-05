@@ -95,13 +95,6 @@ function spinWheel() {
             drumRollAudio.pause();
             drumRollAudio.currentTime = 0;
             celebratorySoundAudio.play();
-
-            // Calculate the index of the winning segment based on the final rotation
-            const winnerIndex = Math.floor(((2 * Math.PI - currentRotation) % (2 * Math.PI)) / arcSize);
-
-            setTimeout(() => {
-                document.getElementById('winner-message').innerText = `Congratulations, ${names[winnerIndex]}!`;
-            }, 1000); // 1-second delay before showing the winner message
         }
     }
 
