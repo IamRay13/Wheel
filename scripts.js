@@ -50,12 +50,12 @@ function drawWheel() {
         ctx.fill();
         ctx.save();
 
-        ctx.translate(250 + Math.cos(angle + arcSize / 2) * 200, 250 + Math.sin(angle + arcSize / 2) * 200);
-        ctx.rotate(angle + arcSize / 2 + Math.PI / 2);
-        ctx.font = '14px Arial';
-        ctx.fillStyle = '#000';
+        ctx.translate(250, 250);
+        ctx.rotate(angle + arcSize / 2);
         ctx.textAlign = 'center';
-        ctx.fillText(names[i], 0, 0);
+        ctx.fillStyle = '#000';
+        ctx.font = '14px Arial';
+        ctx.fillText(names[i], 150, 0);
         ctx.restore();
     }
 }
